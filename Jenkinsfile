@@ -14,7 +14,10 @@ pipeline {
         }
         stage('Build Image') {
             agent {
-                dockerfile true
+                dockerfile {
+                    filename 'Dockerfile'
+                    dir 'server'
+                }
             }
             steps {
                 echo 'Image built'
