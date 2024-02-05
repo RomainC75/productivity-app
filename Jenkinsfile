@@ -20,7 +20,9 @@ pipeline {
                 }
             }
             steps {
+                echo '==============BUILD================================='
                 echo 'Image built'
+                echo '================END OF BUILD===================================='
             }
         }
         stage('Client Tests') {
