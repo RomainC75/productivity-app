@@ -1,17 +1,25 @@
 pipeline {
-	agent {
+    agent {
         docker {
             image 'node:20.11.0-alpine3.19' 
             args '-p 3000:3000' 
         }
     }
 
-	stages {
-		stage('Checkout') {
-			steps {
-				checkout scm
-			}
-		}
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build Image') {
+            agent {
+                dockerfile true
+            }
+            steps {
+                echo 'Image built'
+            }
+        }
         stage('Client Tests') {
             steps {
                 dir('client') {
@@ -20,6 +28,5 @@ pipeline {
                 }
             }
         }
-	}
-
+    }
 }
