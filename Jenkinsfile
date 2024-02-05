@@ -15,7 +15,6 @@ pipeline {
         stage('Client Tests') {
             steps {
                 dir('client') {
-                    sh 'sudo apt-get install nodejs npm'
                     sh 'npm install'
                     sh 'npm test'
                 }
