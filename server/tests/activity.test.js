@@ -22,7 +22,7 @@ describe("GET /api/activities", () => {
       password: process.env.PASSWORD,
     });
 
-    console.log("-> token : ",token)
+    console.log("-> token : ",token.body.token)
 
     const response = await request(app)
       .get("/api/activities")
@@ -30,6 +30,8 @@ describe("GET /api/activities", () => {
         Authorization: "bearer " + token.body.token,
         "Content-Type": "application/json",
       });
+
+    console.log("-> body : ",response.body)
 
     expect(response.statusCode).toBe(200);
     expect(response.body.length).toBeGreaterThan(0);
