@@ -46,7 +46,6 @@ pipeline {
             }
         }
         
-        // This stage is telling Jenkins to push the images to DockerHub.
         stage('Push Images to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
