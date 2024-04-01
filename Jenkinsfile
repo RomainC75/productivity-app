@@ -4,6 +4,10 @@ pipeline {
     tools { 
 	nodejs "nodejs-20.12"
 	git "git-agent"
+    	docker {
+            image 'docker-builder'
+            // args '-v /var/run/docker.sock:/var/run/docker.sock' // For Docker-in-Docker (DIND)
+        }
     }
 	
     environment {
