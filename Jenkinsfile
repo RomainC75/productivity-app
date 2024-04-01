@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent { label 'ubuntu18-agent' }
+
+    tools { nodejs "nodejs-20.12" }
+	
     environment {
 	    MONGODB_URI = credentials('mongodb-uri')
 	    TOKEN_KEY = credentials('token-key')
