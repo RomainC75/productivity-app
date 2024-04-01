@@ -20,7 +20,9 @@ pipeline {
                     sh 'npm test'
                 }
             }
-            steps {
+        }
+	stage('Server Tests') {
+	     steps {
                 dir('server') {
                     sh 'npm install'
                     sh 'export MONGODB_URI=$MONGODB_URI'
@@ -30,7 +32,7 @@ pipeline {
                     sh 'npm test'
                 }
             }
-        }
+	}
         stage('Build Image') {
             agent {
                 dockerfile {
