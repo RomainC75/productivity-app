@@ -50,8 +50,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push rakeshpotnuru/productivity-app:client-latest'
-                    sh 'docker push rakeshpotnuru/productivity-app:server-latest'
+                    sh 'docker push romainc75/productivity-app:client-latest'
+                    sh 'docker push romainc75/productivity-app:server-latest'
                 }
             }
         }
