@@ -1,7 +1,10 @@
 pipeline {
     agent { label 'ubuntu18-agent' }
 
-    tools { nodejs "nodejs-20.12" }
+    tools { 
+	nodejs "nodejs-20.12"
+	git "git-agent"
+    }
 	
     environment {
 	    MONGODB_URI = credentials('mongodb-uri')
