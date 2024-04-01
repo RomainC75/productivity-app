@@ -22,6 +22,8 @@ describe("GET /api/activities", () => {
       password: process.env.PASSWORD,
     });
 
+    console.log("-> token : ",token)
+
     const response = await request(app)
       .get("/api/activities")
       .set({
