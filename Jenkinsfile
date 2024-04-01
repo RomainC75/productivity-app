@@ -39,17 +39,21 @@ pipeline {
                 }
             }
 	}
-        stage('Build Image') {
-            agent {
-                dockerfile {
-                    filename 'Dockerfile'
-                    dir 'server'
-                }
-            }
+        stage('Build Images') {
             steps {
-                echo '==============BUILD================================='
-                echo 'Image built'
-                echo '================END OF BUILD===================================='
+                sh 'docker build -t romainc75/productivity-app:client-latest client'
+                sh 'docker build -t romainc75/productivity-app:server-latest server'
+            }
+        }
+        
+        // This stage is telling Jenkins to push the images to DockerHub.
+        stage('Push Images to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push rakeshpotnuru/productivity-app:client-latest'
+                    sh 'docker push rakeshpotnuru/productivity-app:server-latest'
+                }
             }
         }
         
