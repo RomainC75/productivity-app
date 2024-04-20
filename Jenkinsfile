@@ -4,10 +4,6 @@ pipeline {
     tools { 
 	nodejs "nodejs-20.12"
 	git "git-agent"
-    	docker {
-            image 'docker-builder'
-            // args '-v /var/run/docker.sock:/var/run/docker.sock' // For Docker-in-Docker (DIND)
-        }
     }
 	
     environment {
@@ -15,6 +11,9 @@ pipeline {
 	    TOKEN_KEY = credentials('token-key')
 	    EMAIL = credentials('email')
 	    PASSWORD = credentials('password')
+	DOCKER_REGISTRY = 'factoregistry.azurecr.io'
+        IMAGE_NAME = 'mybuiltImage'
+        IMAGE_TAG = 'latest'  
     }
     
     stages {
@@ -43,6 +42,13 @@ pipeline {
                 }
             }
 	}
+	stage('BUILD Docker Image') {
+            steps {
+                script {
+                    docker.build("${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}:${env.IMAGE_TAG}", '.')
+                }
+            }
+        }
         stage('Build Images') {
             steps {
                 sh 'docker build -t romainc75/productivity-app:client-latest client'
