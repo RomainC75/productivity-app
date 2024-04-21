@@ -45,6 +45,9 @@ pipeline {
 	stage('BUILD Docker Image') {
             steps {
                 script {
+			sh 'echo ---------------------------'
+			sh 'echo ---------------------------'
+			sh 'echo $USER'
                     docker.build("${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}:${env.IMAGE_TAG}", '.')
                 }
             }
