@@ -48,6 +48,7 @@ pipeline {
                 script {
 			sh 'echo ---------------------------'
 			sh 'echo ---------------------------'
+            sh 'ls'
 			sh 'echo $USER'
                     docker.build("${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}:${env.IMAGE_TAG}", '.')
                 }
