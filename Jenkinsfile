@@ -4,7 +4,7 @@ pipeline {
 
     tools { 
 	nodejs "nodejs-20.12"
-	git "git-agent"
+	// git "git-agent"
     }
 	
     environment {
