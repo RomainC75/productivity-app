@@ -47,12 +47,12 @@ pipeline {
 	stage('BUILD Docker Image') {
             steps {
                 script {
-			sh 'echo ---------------------------'
-			sh 'echo ---------------------------'
-            sh 'ls'
-			sh 'echo $USER'
-                    docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}", './server')
-                    docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", './client')
+                    sh 'echo ---------------------------'
+                    sh 'echo ---------------------------'
+                    sh 'ls'
+                    sh 'echo $USER'
+                    docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}", 'server')
+                    docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", 'client')
                 }
             }
         }
