@@ -13,7 +13,8 @@ pipeline {
 	    EMAIL = credentials('email')
 	    PASSWORD = credentials('password')
 	    DOCKER_REGISTRY = 'factoregistry.azurecr.io'
-        IMAGE_NAME = 'mybuiltimage'
+        SERVER_IMAGE_NAME = 'myserverbuiltimage'
+        CLIENT_IMAGE_NAME = 'myclientbuiltimage'
         IMAGE_TAG = 'latest'  
     }
     
@@ -50,7 +51,8 @@ pipeline {
 			sh 'echo ---------------------------'
             sh 'ls'
 			sh 'echo $USER'
-                    docker.build("${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}:${env.IMAGE_TAG}", '.')
+                    docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}", './server')
+                    docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", './client')
                 }
             }
         }
