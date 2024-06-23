@@ -1,5 +1,6 @@
 pipeline {
-    agent { label 'ubuntu18-agent' }
+    // agent { label 'ubuntu18-agent' }
+    agent any
 
     tools { 
 	nodejs "nodejs-20.12"
@@ -11,7 +12,7 @@ pipeline {
 	    TOKEN_KEY = credentials('token-key')
 	    EMAIL = credentials('email')
 	    PASSWORD = credentials('password')
-	DOCKER_REGISTRY = 'factoregistry.azurecr.io'
+	    DOCKER_REGISTRY = 'factoregistry.azurecr.io'
         IMAGE_NAME = 'mybuiltImage'
         IMAGE_TAG = 'latest'  
     }
