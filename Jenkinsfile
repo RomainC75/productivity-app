@@ -13,7 +13,7 @@ pipeline {
 	    EMAIL = credentials('email')
 	    PASSWORD = credentials('password')
 	    DOCKER_REGISTRY = 'factoregistry.azurecr.io'
-        IMAGE_NAME = 'mybuiltImage'
+        IMAGE_NAME = 'mybuiltimage'
         IMAGE_TAG = 'latest'  
     }
     
