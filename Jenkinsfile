@@ -32,26 +32,28 @@ pipeline {
                 }
             }
         }
-	stage('Server Tests') {
-	     steps {
-                dir('server') {
-                    sh 'npm install'
-                    sh 'export MONGODB_URI=$MONGODB_URI'
-			        sh 'export TOKEN_KEY=$TOKEN_KEY'
-			        sh 'export EMAIL=$EMAIL'
-			        sh 'export PASSWORD=$PASSWORD'
-                    sh 'npm test'
+        stage('Server Tests') {
+            steps {
+                    dir('server') {
+                        sh 'npm install'
+                        sh 'export MONGODB_URI=$MONGODB_URI'
+                        sh 'export TOKEN_KEY=$TOKEN_KEY'
+                        sh 'export EMAIL=$EMAIL'
+                        sh 'export PASSWORD=$PASSWORD'
+                        sh 'npm test'
+                    }
                 }
-            }
-	}
-	stage('BUILD Docker Image') {
+        }
+        stage('BUILD Docker Image') {
             steps {
                 script {
                     sh 'echo ---------------------------'
                     sh 'echo ---------------------------'
                     sh 'ls'
                     sh 'echo $USER'
-                    docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}", 'server')
+                    sh 'cd server'
+                    docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
+                    sh 'cd ../client'
                     docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", 'client')
                 }
             }
