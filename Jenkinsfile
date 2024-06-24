@@ -52,6 +52,7 @@ pipeline {
                     sh 'ls'
                     sh 'echo $USER'
                     sh 'cd server'
+                    sh 'ls -l'
                     docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
                     sh 'cd ../client'
                     docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", 'client')
