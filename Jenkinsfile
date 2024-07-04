@@ -53,6 +53,7 @@ pipeline {
                     sh 'echo $USER'
                     sh 'cd server'
                     sh 'ls -l'
+                    sh 'docker pull node:17-alpine'
                     sh 'cd server && pwd && docker build -t romainc75/productivity-app:server-latest .'
                     // docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
                     sh 'cd ../client'
