@@ -53,7 +53,7 @@ pipeline {
                     sh 'echo $USER'
                     sh 'cd server'
                     sh 'ls -l'
-                    sh 'cd server && docker build -t romainc75/productivity-app:server-latest .'
+                    sh 'cd server && pwd && docker build -t romainc75/productivity-app:server-latest .'
                     // docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
                     sh 'cd ../client'
                     docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", 'client')
