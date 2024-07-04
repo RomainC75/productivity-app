@@ -58,7 +58,7 @@ pipeline {
                     cd server;
                     ls -l;
                     pwd;
-                    docker build -t romainc75/productivity-app:server-latest --progress=plain --file ./Dockerfile .
+                    docker build -t romainc75/productivity-app:server-latest --progress=plain --file /var/lib/jenkins/workspace/productivity-app_main/server/Dockerfile .
                     '''
                     // docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
                     sh 'cd ../client'
