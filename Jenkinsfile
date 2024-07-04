@@ -54,7 +54,7 @@ pipeline {
                     sh 'cd server'
                     sh 'ls -l'
                     sh 'docker images'
-                    sh 'cd server && sudo ls -lRa /var/snap/docker/common/var-lib-docker/tmp/ && pwd && docker build -t romainc75/productivity-app:server-latest --progress=plain --file ./Dockerfile .'
+                    sh 'cd server && pwd && docker build -t romainc75/productivity-app:server-latest --progress=plain --file ./Dockerfile .'
                     // docker.build("${env.DOCKER_REGISTRY}/${env.SERVER_IMAGE_NAME}:${env.IMAGE_TAG}")
                     sh 'cd ../client'
                     docker.build("${env.DOCKER_REGISTRY}/${env.CLIENT_IMAGE_NAME}:${env.IMAGE_TAG}", 'client')
